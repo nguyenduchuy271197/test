@@ -5,7 +5,6 @@ import LogoutButton from "@/components/user/LogoutButton";
 
 export default async function Home() {
   const users = await getUsers();
-  console.log(users);
 
   return (
     <div className="flex-col flex-1 hidden h-full p-8 space-y-8 md:flex">
