@@ -20,7 +20,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [password, setPassword, removePassword] = useLocalStorage({
     key: "password",
-    defaultValue: JSON.parse(localStorage.getItem("password") || ""),
+    defaultValue: "",
   });
 
   const isAuth = password === process.env.NEXT_PUBLIC_PASSWORD;
