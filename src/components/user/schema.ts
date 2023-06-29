@@ -5,7 +5,7 @@ export const userSchema = z.object({
   name: z.string(),
   email: z.string(),
   phone: z.string(),
-  course: z.string(),
+  course: z.string().optional(),
   registration_date: z.string(),
 });
 

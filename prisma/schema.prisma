@@ -14,8 +14,8 @@ model Course {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   slug            String   @unique
   title           String
-  subtitle        String
-  price           Int
+  subtitle        String?
+  price           Int?
   discountedPrice Int?
   objectives      String[]
   modules         Module[]
@@ -32,11 +32,11 @@ model Module {
 }
 
 model User {
-  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
   email             String
   name              String
   phone             String
-  registration_date String
-  Course            Course @relation(fields: [courseId], references: [id])
-  courseId          String @db.ObjectId
+  registration_date DateTime @default(now())
+  Course            Course?  @relation(fields: [courseId], references: [id])
+  courseId          String?  @db.ObjectId
 }

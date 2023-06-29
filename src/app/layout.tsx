@@ -1,5 +1,6 @@
 import Providers from "@/providers/Providers";
 import "../styles/globals.css";
+import Navbar from "@/components/navbar/Navbar";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body>{children}</body>
+        <body className="flex-col hidden md:flex">
+          <Navbar />
+          {children}
+        </body>
       </Providers>
     </html>
   );

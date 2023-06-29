@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { ReactNode, createContext, useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "@mantine/hooks";
 
 interface AuthContextType {
@@ -18,6 +18,9 @@ export const AuthContext = createContext<AuthContextType>({
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const initialPath = useRef(pathname);
+
   const [password, setPassword, removePassword] = useLocalStorage({
     key: "password",
     defaultValue: "",
@@ -39,7 +42,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (password === process.env.NEXT_PUBLIC_PASSWORD) {
-      router.push("/");
+      router.push(initialPath.current);
     } else {
       router.push("/login");
     }
